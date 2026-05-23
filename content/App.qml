@@ -11,6 +11,7 @@ ApplicationWindow {
 
     property real lat
     property real lon
+    readonly property string apiKey: typeof openWeatherMapApiKey !== "undefined" ? openWeatherMapApiKey : ""
 
     Rectangle {
         id: weatherUiBackground
@@ -494,9 +495,13 @@ ApplicationWindow {
     }
 
     function fetchWeather() {
+        if (!apiKey) {
+            locationText.text = qsTr("Missing API key — set OPENWEATHERMAP_API_KEY")
+            return
+        }
         var http = new XMLHttpRequest()
-        var url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityInput.text}&appid=126ef9f8c685cc9275b8a0a57fe7b8bd`
-        locationText.text = "Fecthing data"
+        var url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityInput.text}&appid=${apiKey}`
+        locationText.text = qsTr("Fetching data…")
         http.onreadystatechange = function() {
             if (http.readyState === XMLHttpRequest.DONE) {
                 if (http.status === 200) {
@@ -612,8 +617,10 @@ ApplicationWindow {
     }
 
     function fetchData() {
+        if (!apiKey)
+            return
         var http = new XMLHttpRequest()
-        var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=126ef9f8c685cc9275b8a0a57fe7b8bd`
+        var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
 
         http.onreadystatechange = function() {
             if (http.readyState === XMLHttpRequest.DONE) {

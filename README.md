@@ -49,7 +49,26 @@ Run from the project root or the `build/` directory.
 
 ## OpenWeatherMap API Key
 
-The app uses the OpenWeatherMap API. Replace the API key in `content/App.qml` (`fetchWeather` and `fetchData`) with your own key from [openweathermap.org](https://openweathermap.org/api).
+The API key is **not** stored in source code. Get a free key from [openweathermap.org](https://openweathermap.org/api), then either:
+
+**Option A — environment variable (recommended)**
+
+```bash
+export OPENWEATHERMAP_API_KEY="your_api_key_here"
+./build/QtQmlWeatherApp
+```
+
+**Option B — local `.env` file (gitignored)**
+
+```bash
+cp .env.example .env
+# Edit .env and replace your_api_key_here with your real key
+./build/QtQmlWeatherApp
+```
+
+The app searches for `.env` in the current directory, next to the executable (`build/.env`), and parent folders (so a `.env` in the project root works when you run `./build/QtQmlWeatherApp`).
+
+If your key was ever committed to Git, **revoke it** in the OpenWeatherMap dashboard and create a new one.
 
 ## Project Structure
 

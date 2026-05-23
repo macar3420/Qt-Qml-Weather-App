@@ -3,7 +3,9 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
+#include "api_config.h"
 #include "app_environment.h"
 #include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
@@ -15,6 +17,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty(
+        QStringLiteral("openWeatherMapApiKey"), loadOpenWeatherMapApiKey());
     const QUrl url(u"qrc:/qt/qml/content/App.qml"_qs);
     QObject::connect(
                 &engine, &QQmlApplicationEngine::objectCreated, &app,
