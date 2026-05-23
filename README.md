@@ -36,7 +36,7 @@ sudo dnf install qt6-qtbase-devel qt6-qtdeclarative-devel cmake gcc-c++
 ## Build & Run
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/macar3420/Qt-Qml-Weather-App.git
 cd Qt-Qml-Weather-App
 
 cmake -B build -DCMAKE_BUILD_TYPE=Release
