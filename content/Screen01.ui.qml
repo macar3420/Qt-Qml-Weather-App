@@ -7,7 +7,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 
 import QtQuick 6.5
 import QtQuick.Controls 6.5
-import WeatherApp
+import QtQmlWeatherApp
 
 Rectangle {
     id: rectangle
@@ -31,7 +31,7 @@ Rectangle {
 
     Text {
         id: label
-        text: qsTr("Hello WeatherApp")
+        text: qsTr("Qt Qml Weather App")
         anchors.top: button.bottom
         font.family: Constants.font.family
         anchors.topMargin: 45

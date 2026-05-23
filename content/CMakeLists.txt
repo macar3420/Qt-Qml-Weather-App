@@ -11,4 +11,14 @@ qt6_add_qml_module(content
         Screen01.ui.qml
     RESOURCES
         fonts/fonts.txt
+        images/clear.png
+        images/clouds.png
+        images/drizzle.png
+        images/flake.png
+        images/fog.png
+        images/humidity.png
+        images/mist.png
+        images/rain.png
+        images/snow.png
+        images/wind.png
 )

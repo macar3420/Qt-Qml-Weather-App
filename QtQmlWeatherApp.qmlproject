@@ -98,7 +98,7 @@ Project {
     importPaths: [ "imports", "asset_imports" ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/WeatherApp"
+    targetDirectory: "/opt/QtQmlWeatherApp"
 
     qdsVersion: "4.3"
 

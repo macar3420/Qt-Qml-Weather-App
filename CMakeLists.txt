@@ -1,31 +1,33 @@
 cmake_minimum_required(VERSION 3.21.1)
 
-option(LINK_INSIGHT "Link Qt Insight Tracker library" ON)
-option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
+option(LINK_INSIGHT "Link Qt Insight Tracker library" OFF)
+option(BUILD_QDS_COMPONENTS "Build design studio components" OFF)
 
-project(WeatherAppApp LANGUAGES CXX)
+project(QtQmlWeatherApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Network Qml Quick QuickControls2)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
 endif()
 
-qt_add_executable(WeatherAppApp src/main.cpp)
+qt_add_executable(QtQmlWeatherApp src/main.cpp)
 
-qt_add_resources(WeatherAppApp "configuration"
+qt_add_resources(QtQmlWeatherApp "configuration"
     PREFIX "/"
     FILES
         qtquickcontrols2.conf
 )
 
-target_link_libraries(WeatherAppApp PRIVATE
+target_link_libraries(QtQmlWeatherApp PRIVATE
     Qt6::Core
     Qt6::Gui
+    Qt6::Network
     Qt6::Qml
     Qt6::Quick
+    Qt6::QuickControls2
 )
 
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)
@@ -45,7 +47,7 @@ if (LINK_INSIGHT)
 endif ()
 
 include(GNUInstallDirs)
-install(TARGETS WeatherAppApp
+install(TARGETS QtQmlWeatherApp
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
